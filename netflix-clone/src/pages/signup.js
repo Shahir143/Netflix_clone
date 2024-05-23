@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged,} from "firebase/auth";
+import { onAuthStateChanged,createUserWithEmailAndPassword,} from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
 
 import React, { useState } from "react";
@@ -10,10 +10,7 @@ import Header from "../components/Header";
 
 function Signup() {
     const [showPassword, setShowPassword] = useState(false);
-    const [formValues, setFormValues] = useState({
-      email: "",
-      password: "",
-    });
+    const [formValues, setFormValues] = useState({email: "", password: "",});
     const navigate = useNavigate();
   
     const handleSignIn = async () => {
