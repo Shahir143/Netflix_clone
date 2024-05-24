@@ -8,6 +8,7 @@ export default React.memo(function CardSlider({ data, title }) {
   const listRef = useRef();
   const [sliderPosition, setSliderPosition] = useState(0);
   const [showControls, setShowControls] = useState(false);
+
   const handleDirection = (direction) => {
     let distance = listRef.current.getBoundingClientRect().x - 70;
     if (direction === "left" && sliderPosition > 0) {
@@ -23,7 +24,7 @@ export default React.memo(function CardSlider({ data, title }) {
   return (
     <Container
       className="flex column"
-      showControls={showControls}
+      $showControls={showControls}
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
     >
@@ -38,7 +39,7 @@ export default React.memo(function CardSlider({ data, title }) {
         </div>
         <div className="slider flex" ref={listRef}>
           {data.map((movie, index) => {
-            return <Card movieData={movie} index={index} key={movie.id} />;
+            return <Card key={movie.id} movieData={movie} index={index} />;
           })}
         </div>
         <div
@@ -52,6 +53,7 @@ export default React.memo(function CardSlider({ data, title }) {
     </Container>
   );
 });
+
 const Container = styled.div`
   gap: 1rem;
   position: relative;
@@ -89,4 +91,11 @@ const Container = styled.div`
       right: 0;
     }
   }
+  ${(props) =>
+    props.$showControls &&
+    `
+    .slider-action {
+      display: flex;
+    }
+  `}
 `;

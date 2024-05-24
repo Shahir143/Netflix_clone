@@ -7,6 +7,7 @@ import styled from "styled-components";
 
 import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
+import addUser from "../store/index"
 
 function Signup() {
     const [showPassword, setShowPassword] = useState(false);
@@ -17,6 +18,7 @@ function Signup() {
       try {
         const { email, password } = formValues;
         await createUserWithEmailAndPassword(firebaseAuth, email, password);
+        addUser({email});
       } catch (error) {
         console.log(error);
       }

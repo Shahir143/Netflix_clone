@@ -1,5 +1,25 @@
 const User = require("../models/UserModel");
 
+exports.addUser = async (req, res) => {
+  try {
+    const { email } = req.body; // Extract email from request body
+
+    // Create a new user instance
+    const newUser = new User({
+      email: email,
+      // You can add more properties here if needed
+    });
+
+    // Save the new user to the database
+    const savedUser = await newUser.save();
+
+    res.status(201).json(savedUser); // Send the saved user as a JSON response
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' }); // Send an error response
+  }
+};
+
 module.exports.getLikedMovies = async (req, res) => {
   try {
     const { email } = req.params;

@@ -129,3 +129,14 @@ import {
   });
   
   export const { setGenres, setMovies } = NetflixSlice.actions;
+
+const addUser =async(props)=>{
+  try{
+    await axios.put("http://localhost:5000/api/user/addUser", {
+        email:props.email,
+      });
+  }catch(e){
+    console.log(e)
+  }
+}
+export default addUser;
